@@ -130,18 +130,20 @@
               <th>رقماً</th>
 
             </tr>
-            <tbody  v-for="s in year1.year_courses_st" :key="s.id" >
-              
-                 
-                  <tr > 
+             {{initt_i()}}
+             {{setSems(1)}}
+            <tbody  v-for="s in sec1" :key="s.id" >
+                  <tr >
                     <td colspan="2"> </td>
-                  <td>{{ s.semester == 'second'? s.Mark:'' }}</td>
-                  <td colspan="3">{{ s.semester == 'second'? s.course_name:'' }} </td> 
+                    {{ looog(i,secNum,1)  }}
+                  <td>{{ seco2.semester == 'second'? seco2.Mark:'' }}</td>
+                  <td colspan="3">{{ seco2.semester == 'second'? seco2.course_name:'' }} </td>
                     <td colspan="2"> </td>
                   <td>{{ s.semester == 'first'? s.Mark:'' }}</td>
                   <td colspan="3">{{ s.semester == 'first'? s.course_name:'' }}</td> </tr>
-                
-               
+
+
+             {{ movv_i()}}
             </tbody>
             <tfoot>
               <td colspan="3"></td>
@@ -175,14 +177,21 @@
               <th>رقماً</th>
 
             </tr>
-            <tr>
-              <td colspan="2"> </td>
-              <td></td>
-              <td colspan="3"> </td>
-              <td colspan="2"> </td>
-              <td></td>
-              <td colspan="3"> </td>
-            </tr>
+             {{initt_i()}}
+             {{setSems(2)}}
+            <tbody  v-for="s in sec1" :key="s.id" >
+                  <tr >
+                    <td colspan="2"> </td>
+                    {{ looog(i,secNum,2)  }}
+                  <td>{{ seco2.semester == 'second'? seco2.Mark:'' }}</td>
+                  <td colspan="3">{{ seco2.semester == 'second'? seco2.course_name:'' }} </td>
+                    <td colspan="2"> </td>
+                  <td>{{ s.semester == 'first'? s.Mark:'' }}</td>
+                  <td colspan="3">{{ s.semester == 'first'? s.course_name:'' }}</td> </tr>
+
+
+             {{ movv_i()}}
+            </tbody>
             <tfoot>
               <td colspan="3"> </td>
 
@@ -214,14 +223,21 @@
               <th>رقماً</th>
 
             </tr>
-            <tr>
-              <td colspan="2"> </td>
-              <td></td>
-              <td colspan="3"> </td>
-              <td colspan="2"> </td>
-              <td></td>
-              <td colspan="3"> </td>
-            </tr>
+             {{initt_i()}}
+             {{setSems(3)}}
+            <tbody  v-for="s in sec1" :key="s.id" >
+                  <tr >
+                    <td colspan="2"> </td>
+                    {{ looog(i,secNum,3)  }}
+                  <td>{{ seco2.semester == 'second'? seco2.Mark:'' }}</td>
+                  <td colspan="3">{{ seco2.semester == 'second'? seco2.course_name:'' }} </td>
+                    <td colspan="2"> </td>
+                  <td>{{ s.semester == 'first'? s.Mark:'' }}</td>
+                  <td colspan="3">{{ s.semester == 'first'? s.course_name:'' }}</td> </tr>
+
+
+             {{ movv_i()}}
+            </tbody>
             <tfoot>
               <td colspan="3"> </td>
 
@@ -252,15 +268,22 @@
               <th colspan="2">كتابة</th>
               <th>رقماً</th>
 
-            </tr>
-            <tr>
-              <td colspan="2"> </td>
-              <td></td>
-              <td colspan="3"> </td>
-              <td colspan="2"> </td>
-              <td></td>
-              <td colspan="3"> </td>
-            </tr>
+</tr>
+ {{initt_i()}}
+ {{setSems(4)}}
+<tbody  v-for="s in sec1" :key="s.id" >
+      <tr >
+        <td colspan="2"> </td>
+        {{ looog(i,secNum,4)  }}
+      <td>{{ seco2.semester == 'second'? seco2.Mark:'' }}</td>
+      <td colspan="3">{{ seco2.semester == 'second'? seco2.course_name:'' }} </td>
+        <td colspan="2"> </td>
+      <td>{{ s.semester == 'first'? s.Mark:'' }}</td>
+      <td colspan="3">{{ s.semester == 'first'? s.course_name:'' }}</td> </tr>
+
+
+ {{ movv_i()}}
+</tbody>
             <tfoot>
               <td colspan="3"> </td>
 
@@ -397,13 +420,18 @@ import axios from "axios";
 import { mapGetters } from 'vuex'
 
 import { ref } from '@vue/reactivity'
+import { resolveComponent } from "vue";
 export default {
-  
+
   setup() {
     const year1 = ref({})
+    const i=0
+     const secNum=0
     const year2 = ref({})
     const year3 = ref({})
     const year4 = ref({})
+    const seco2 =ref({})
+    const sec1 =ref({})
     const data = ref([])
     const section = ref('')
     const docType = ref('')
@@ -442,13 +470,82 @@ export default {
     })
     const suspsen = ref([])
 
-    return { failed, data, select, section, docType, Show, id, name, status, search, ShYear, allcourses, sr, sure, stopreg, tran, trans, student1, suspsen, year1, year2, year3, year4 }
+    return {sec1,secNum, i,seco2,failed, data, select, section, docType, Show, id, name, status, search, ShYear, allcourses, sr, sure, stopreg, tran, trans, student1, suspsen, year1, year2, year3, year4 }
   },
 
 
   methods: {
     back() {
       this.$router.go(-1)
+    },
+    looog(vvv,sem,yeer) {
+var yeer88=ref({});
+if (yeer==1) {
+       yeer88=this.year1;
+}if (yeer==2) {
+   yeer88=this.year2;
+}if (yeer==3) {
+     yeer88=this.year3;
+}if (yeer==4) {
+   yeer88=this.year4;
+}
+      if(sem==2){
+        var lon=yeer88.second_semster.length-1;
+        if(lon<vvv){
+          this.seco2="";
+        }
+        else{
+      this.seco2=yeer88.second_semster.at(vvv);}
+    }
+      else{
+        var lon=this.year1.first_semster.length-1;
+        if(lon<vvv){
+          this.seco2="";
+        }
+        else{
+      this.seco2=this.year1.first_semster.at(vvv);}
+      }
+      console.log(vvv);
+      console.log(this.seco2);
+    },
+    initt_i() {
+      this.i=0;
+    },
+    setSems(yeer) {
+      var yeer88;
+      var lon1=1;
+      var lon2=1;
+if (yeer==1) {
+       yeer88=this.year1;
+  lon1=this.year1.first_semster.length;
+  lon2=this.year1.second_semster.length;
+}if (yeer==2) {
+   yeer88=this.year2;
+  lon1=this.year2.first_semster.length;
+  lon2=this.year2.second_semster.length;
+}if (yeer==3) {
+     yeer88=this.year3;
+    lon1=this.year3.first_semster.length;
+  lon2=this.year3.second_semster.length;
+}if (yeer==4) {
+   yeer88=this.year4;
+  lon1=this.year4.first_semster.length;
+  lon2=this.year4.second_semster.length;
+}else{
+
+}
+      if (lon1 >= lon2)
+        {
+        this.secNum=2;
+        this.sec1=yeer88.first_semster;
+      }
+             else
+       {this.secNum=1
+      this.sec1=yeer88.second_semster;
+    }
+    },
+    movv_i() {
+      this.i=this.i+1;
     },
     async SearchStudent() {
       this.show = true
@@ -490,7 +587,7 @@ export default {
             }
           }
           console.log(this.year1)
-        
+
         }
         catch (e) {
           console.log(e);
@@ -528,7 +625,7 @@ export default {
     // merg1(){
     //   const first={}
     //   for(const f of this.year1.first_semster)
-  
+
     //   {
     //     const second=f.second
     //     first[second]=first[second]||[]
@@ -545,10 +642,10 @@ export default {
     //   const newyear1=[]
     //   const newyear2=[]
     //   var id=0
-    //       var hh={} 
+    //       var hh={}
     //       for(var e of first){
-    //        var type='f' 
-            
+    //        var type='f'
+
     //         var r=e
     //         newyear1.push({e})
     //         newyear1[id]=newyear1[id]||[]
@@ -561,10 +658,10 @@ export default {
     //        newyear2.push({ew})
     //       id++
     //       }
-          
+
     //       // var le=first.length+second.length-1
     //       // console.log(le)
-          
+
     //       for(var e of first){
     //         for(var ew of second){
     //        newyear.push({e,ew})
@@ -573,14 +670,14 @@ export default {
     //       //  console.log({e,ew})
 
     //       id++
-              
+
     //         }
     //       }
-    //       newyear.filter((item,index)=>{newyear.indexOf(item)===index 
+    //       newyear.filter((item,index)=>{newyear.indexOf(item)===index
     //       })
-         
-          
-          
+
+
+
     //       console.log(newyear)
     //       return newyear
     // }

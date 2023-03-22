@@ -2,7 +2,8 @@
   <div class=" w-full text-4xl  font-light  text-white   h-12 bg-primary flex p-2 justify-between items-center"
     style="text-align:center">
     <div>
-      <img src="../../assets/Images/arrow-left-circle.png" class="m-4 h-12  left-2 cursor-pointer " @click="back" alt="الخلف">
+      <img src="../../assets/Images/arrow-left-circle.png" class="m-4 h-12  left-2 cursor-pointer " @click="back"
+        alt="الخلف">
     </div>
     <div>
       وثائق &nbsp;&nbsp;</div>
@@ -110,186 +111,144 @@
           المفتوح قسم الترجمة حتى العام الدراسي
         </label>
       </div>
-      <div class="mt-4">
+       <!-- <MarksTable t="السنة الأولى" :y1="y1" :year1="year1"></MarksTable>
+       <MarksTable t="السنة الثانية" :y2="y2" :year2="year2"></MarksTable>
+       <MarksTable t="السنة الثالثة" :y3="y3" :year3="year3"></MarksTable> 
+       <MarksTable t="السنة الرابعة" :y4="y4" :year4="year4"></MarksTable>  -->
+       <div class="mt-4">
         <div class="flex justify-center text-primary text-2xl">
           السنة الأولى
         </div>
-        <div class=" mx-auto mt-2">
-          <table class="h-92 w-92">
+        <div class=" flex mx-10">
+          <table class="" v-for="(exam, index) in exams1" :key="index">
             <tr>
               <th colspan="3">الدرجة</th>
-              <th colspan="3" rowspan="2">مقررات الفصل الثاني</th>
-              <th colspan="3">الدرجة</th>
-              <th colspan="3" rowspan="2">مقررات الفصل الأول </th>
-
+              <!-- <th colspan="3" rowspan="2">مقررات الفصل الثاني</th> -->
+              <th colspan="3" rowspan="2"> {{ exam[index].type == 'f' ? 'مقررات الفصل الاول' : 'مقررات الفصل الثاني' }}</th>
             </tr>
             <tr>
               <th colspan="2">كتابة</th>
               <th>رقماً</th>
-              <th colspan="2">كتابة</th>
-              <th>رقماً</th>
-
             </tr>
-             {{initt_i()}}
-             {{setSems(1)}}
-            <tbody  v-for="s in sec1" :key="s.id" >
-                  <tr >
-                     {{ looog(i,secNum,1)  }}
-                    <td colspan="2">{{ seco2.semester == 'second'? seco2.typing:'' }} </td>
-                  <td>{{ seco2.semester == 'second'? seco2.Mark:'' }}</td>
-                  <td colspan="3">{{ seco2.semester == 'second'? seco2.course_name:'' }} </td>
-                    <td colspan="2">{{ s.semester == 'first'? s.typing:'' }} </td>
-                  <td>{{ s.semester == 'first'? s.Mark:'' }}</td>
-                  <td colspan="3">{{ s.semester == 'first'? s.course_name:'' }}</td> </tr>
-
-
-             {{ movv_i()}}
+            <tbody v-for="paper in exam" :key="paper.id">
+              <tr>
+                <td colspan="2">{{ paper.typing }}</td>
+                <td>{{ paper.Mark }}</td>
+                <td colspan="3">{{ paper.course_name }}</td>
+              </tr>
             </tbody>
             <tfoot>
-              <td colspan="3"></td>
 
-              <td colspan="3"> المعدل </td>
-              <td colspan="3"></td>
+              <td colspan="3">{{ exam[index].type == 'f' ? y1.Avg : y1.Year_Courses_Count }}</td>
 
-              <td colspan="3">المجموع </td>
+              <td colspan="3"> {{ exam[index].type == 'f' ? 'المعدل' : 'المجموع' }} </td>
             </tfoot>
-
           </table>
+
+
+
         </div>
       </div>
       <div class="mt-4">
         <div class="flex justify-center text-primary text-2xl">
           السنة الثانية
         </div>
-        <div class=" mx-auto mt-2">
-          <table class="h-92 w-92">
+        <div class=" flex mx-10">
+          <table class="" v-for="(exam, index) in exams2" :key="index">
             <tr>
               <th colspan="3">الدرجة</th>
-              <th colspan="3" rowspan="2">مقررات الفصل الثاني</th>
-              <th colspan="3">الدرجة</th>
-              <th colspan="3" rowspan="2">مقررات الفصل الأول </th>
-
+              <!-- <th colspan="3" rowspan="2">مقررات الفصل الثاني</th> -->
+              <th colspan="3" rowspan="2"> {{ exam[index].type == 'f' ? 'مقررات الفصل الاول' : 'مقررات الفصل الثاني' }}</th>
             </tr>
             <tr>
               <th colspan="2">كتابة</th>
               <th>رقماً</th>
-              <th colspan="2">كتابة</th>
-              <th>رقماً</th>
-
             </tr>
-             {{initt_i()}}
-             {{setSems(2)}}
-            <tbody  v-for="s in sec1" :key="s.id" >
-                  <tr >                    {{ looog(i,secNum,2)  }}
-                    <td colspan="2">{{ seco2.semester == 'second'? seco2.typing:'' }} </td>
-                  <td>{{ seco2.semester == 'second'? seco2.Mark:'' }}</td>
-                  <td colspan="3">{{ seco2.semester == 'second'? seco2.course_name:'' }} </td>
-                    <td colspan="2">{{ s.semester == 'first'? s.typing:'' }} </td>
-                  <td>{{ s.semester == 'first'? s.Mark:'' }}</td>
-                  <td colspan="3">{{ s.semester == 'first'? s.course_name:'' }}</td> </tr>
-
-
-             {{ movv_i()}}
+            <tbody v-for="paper in exam" :key="paper.id">
+              <tr>
+                <td colspan="2">{{ paper.typing }}</td>
+                <td>{{ paper.Mark }}</td>
+                <td colspan="3">{{ paper.course_name }}</td>
+              </tr>
             </tbody>
             <tfoot>
-              <td colspan="3"> </td>
 
-              <td colspan="3"> المعدل </td>
-              <td colspan="3"></td>
+              <td colspan="3">{{ exam[index].type == 'f' ? y2.Avg : y2.Year_Courses_Count }}</td>
 
-              <td colspan="3">المجموع </td>
+              <td colspan="3"> {{ exam[index].type == 'f' ? 'المعدل' : 'المجموع' }} </td>
             </tfoot>
           </table>
+
+
+
         </div>
       </div>
       <div class="mt-4">
         <div class="flex justify-center text-primary text-2xl">
           السنة الثالثة
         </div>
-        <div class=" mx-auto mt-2">
-          <table class="h-92 w-92">
+        <div class=" flex mx-10">
+          <table class="" v-for="(exam, index) in exams3" :key="index">
             <tr>
               <th colspan="3">الدرجة</th>
-              <th colspan="3" rowspan="2">مقررات الفصل الثاني</th>
-              <th colspan="3">الدرجة</th>
-              <th colspan="3" rowspan="2">مقررات الفصل الأول </th>
-
+              <!-- <th colspan="3" rowspan="2">مقررات الفصل الثاني</th> -->
+              <th colspan="3" rowspan="2"> {{ exam[index].type == 'f' ? 'مقررات الفصل الاول' : 'مقررات الفصل الثاني' }}</th>
             </tr>
             <tr>
               <th colspan="2">كتابة</th>
               <th>رقماً</th>
-              <th colspan="2">كتابة</th>
-              <th>رقماً</th>
-
             </tr>
-             {{initt_i()}}
-             {{setSems(3)}}
-            <tbody  v-for="s in sec1" :key="s.id" >
-                  <tr >                    {{ looog(i,secNum,3)  }}
-                    <td colspan="2">{{ seco2.semester == 'second'? seco2.typing:'' }} </td>
-                  <td>{{ seco2.semester == 'second'? seco2.Mark:'' }}</td>
-                  <td colspan="3">{{ seco2.semester == 'second'? seco2.course_name:'' }} </td>
-                    <td colspan="2">{{ s.semester == 'first'? s.typing:'' }} </td>
-                  <td>{{ s.semester == 'first'? s.Mark:'' }}</td>
-                  <td colspan="3">{{ s.semester == 'first'? s.course_name:'' }}</td> </tr>
-
-
-             {{ movv_i()}}
+            <tbody v-for="paper in exam" :key="paper.id">
+              <tr>
+                <td colspan="2">{{ paper.typing }}</td>
+                <td>{{ paper.Mark }}</td>
+                <td colspan="3">{{ paper.course_name }}</td>
+              </tr>
             </tbody>
             <tfoot>
-              <td colspan="3"> </td>
 
-              <td colspan="3"> المعدل </td>
-              <td colspan="3"></td>
+              <td colspan="3">{{ exam[index].type == 'f' ? y3.Avg : y3.Year_Courses_Count }}</td>
 
-              <td colspan="3">المجموع </td>
+              <td colspan="3"> {{ exam[index].type == 'f' ? 'المعدل' : 'المجموع' }} </td>
             </tfoot>
           </table>
+
+
+
         </div>
       </div>
       <div class="mt-4">
         <div class="flex justify-center text-primary text-2xl">
           السنة الرابعة
         </div>
-        <div class=" mx-auto mt-2">
-          <table class="h-92 w-92">
+        <div class=" flex mx-10">
+          <table class="" v-for="(exam, index) in exams4" :key="index">
             <tr>
               <th colspan="3">الدرجة</th>
-              <th colspan="3" rowspan="2">مقررات الفصل الثاني</th>
-              <th colspan="3">الدرجة</th>
-              <th colspan="3" rowspan="2">مقررات الفصل الأول </th>
-
+              <!-- <th colspan="3" rowspan="2">مقررات الفصل الثاني</th> -->
+              <th colspan="3" rowspan="2"> {{ exam[index].type == 'f' ? 'مقررات الفصل الاول' : 'مقررات الفصل الثاني' }}</th>
             </tr>
             <tr>
               <th colspan="2">كتابة</th>
               <th>رقماً</th>
-              <th colspan="2">كتابة</th>
-              <th>رقماً</th>
-
-</tr>
- {{initt_i()}}
- {{setSems(4)}}
-<tbody  v-for="s in sec1" :key="s.id" >
-                  <tr >                    {{ looog(i,secNum,4)  }}
-                    <td colspan="2">{{ seco2.semester == 'second'? seco2.typing:'' }} </td>
-                  <td>{{ seco2.semester == 'second'? seco2.Mark:'' }}</td>
-                  <td colspan="3">{{ seco2.semester == 'second'? seco2.course_name:'' }} </td>
-                    <td colspan="2">{{ s.semester == 'first'? s.typing:'' }} </td>
-                  <td>{{ s.semester == 'first'? s.Mark:'' }}</td>
-                  <td colspan="3">{{ s.semester == 'first'? s.course_name:'' }}</td> </tr>
-
-
-             {{ movv_i()}}
-</tbody>
+            </tr>
+            <tbody v-for="paper in exam" :key="paper.id">
+              <tr>
+                <td colspan="2">{{ paper.typing }}</td>
+                <td>{{ paper.Mark }}</td>
+                <td colspan="3">{{ paper.course_name }}</td>
+              </tr>
+            </tbody>
             <tfoot>
-              <td colspan="3"> </td>
 
-              <td colspan="3"> المعدل </td>
-              <td colspan="3"></td>
+              <td colspan="3">{{ exam[index].type == 'f' ? y4.Avg : y4.Year_Courses_Count }}</td>
 
-              <td colspan="3">المجموع </td>
+              <td colspan="3"> {{ exam[index].type == 'f' ? 'المعدل' : 'المجموع' }} </td>
             </tfoot>
           </table>
+
+
+
         </div>
       </div>
       <div>
@@ -415,20 +374,21 @@
 <script>
 import axios from "axios";
 import { mapGetters } from 'vuex'
-
 import { ref } from '@vue/reactivity'
-import { resolveComponent } from "vue";
+import MarksTable from "../../components/ExamService/documents/MarksTable.vue";
 export default {
-
+  components:{MarksTable},
   setup() {
+    const y1 = ref({})
+    const y2 = ref({})
+    const y3 = ref({})
+    const y4 = ref({})
     const year1 = ref({})
-    const i=0
-     const secNum=0
     const year2 = ref({})
     const year3 = ref({})
     const year4 = ref({})
-    const seco2 =ref({})
-    const sec1 =ref({})
+    const seco2 = ref({})
+    const sec1 = ref({})
     const data = ref([])
     const section = ref('')
     const docType = ref('')
@@ -467,84 +427,14 @@ export default {
     })
     const suspsen = ref([])
 
-    return {sec1,secNum, i,seco2,failed, data, select, section, docType, Show, id, name, status, search, ShYear, allcourses, sr, sure, stopreg, tran, trans, student1, suspsen, year1, year2, year3, year4 }
+    return { sec1, y1, y2, y3, y4, seco2, failed, data, select, section, docType, Show, id, name, status, search, ShYear, allcourses, sr, sure, stopreg, tran, trans, student1, suspsen, year1, year2, year3, year4 }
   },
 
 
   methods: {
     back() {
       this.$router.go(-1)
-    },
-    looog(vvv,sem,yeer) {
-var yeer88=ref({});
-if (yeer==1) {
-       yeer88=this.year1;
-}if (yeer==2) {
-   yeer88=this.year2;
-}if (yeer==3) {
-     yeer88=this.year3;
-}if (yeer==4) {
-   yeer88=this.year4;
-}
-      if(sem==2){
-        var lon=yeer88.second_semster.length-1;
-        if(lon<vvv){
-          this.seco2="";
-        }
-        else{
-      this.seco2=yeer88.second_semster.at(vvv);}
-    }
-      else{
-        var lon=this.year1.first_semster.length-1;
-        if(lon<vvv){
-          this.seco2="";
-        }
-        else{
-      this.seco2=this.year1.first_semster.at(vvv);}
-      }
-  //console.log(vvv);
-//  console.log(this.seco2);
-    },
-    initt_i() {
-      this.i=0;
-    },
-    setSems(yeer) {
-      var yeer88;
-      var lon1=1;
-      var lon2=1;
-if (yeer==1) {
-       yeer88=this.year1;
-  lon1=this.year1.first_semster.length;
-  lon2=this.year1.second_semster.length;
-}if (yeer==2) {
-   yeer88=this.year2;
-  lon1=this.year2.first_semster.length;
-  lon2=this.year2.second_semster.length;
-}if (yeer==3) {
-     yeer88=this.year3;
-    lon1=this.year3.first_semster.length;
-  lon2=this.year3.second_semster.length;
-}if (yeer==4) {
-   yeer88=this.year4;
-  lon1=this.year4.first_semster.length;
-  lon2=this.year4.second_semster.length;
-}else{
-
-}
-      if (lon1 >= lon2)
-        {
-        this.secNum=2;
-        this.sec1=yeer88.first_semster;
-      }
-             else
-       {this.secNum=1
-      this.sec1=yeer88.second_semster;
-    }
-    },
-    movv_i() {
-      this.i=this.i+1;
-    },
-    async SearchStudent() {
+    }, async SearchStudent() {
       this.show = true
       try {
         this.$store.commit('Student/SetID', this.id)
@@ -572,17 +462,22 @@ if (yeer==1) {
           this.data = res.data
           for (var y of this.data) {
             if (y.year == 'first') {
-              this.year1 = y.detal
+              this.y1 = y.detal
+              this.year1 = this.merge(this.y1)
             } if (y.year == 'second') {
-              this.year2 = y.detal
+              this.y2 = y.detal
+              this.year2 = this.merge(this.y2)
             }
             if (y.year == 'third') {
-              this.year3 = y.detal
+              this.y3 = y.detal
+              this.year3 = this.merge(this.y3)
             }
             if (y.year == 'forth') {
-              this.year4 = y.detal
+              this.y4 = y.detal
+              this.year4 = this.merge(this.y4)
             }
           }
+          console.log(this.year3)
           console.log(this.year1)
 
         }
@@ -613,71 +508,53 @@ if (yeer==1) {
     }, suspSelect(s) {
       this.select(s)
       this.loadsusp()
-    },
+    }, merge(year) {
+      var y = [];
+      var type = '';
+      var first = []
+      for (var f of year.first_semster) {
+        type = 'f'
+        f.type = type
+        first.push(f)
+      }
+      var second = []
+      for (var f of year.second_semster) {
+        type = 's'
+        f.type = type
+        second.push(f)
+      }
+      for (var f of first) {
+        y.push(f)
+      }
+      for (var f of second) {
+        y.push(f)
+      }
+      //  console.log(y)
+      return y;
+    }
 
 
 
   }, computed: {
     ...mapGetters(["spec", "dept"]),
-    // merg1(){
-    //   const first={}
-    //   for(const f of this.year1.first_semster)
-
-    //   {
-    //     const second=f.second
-    //     first[second]=first[second]||[]
-    //     first[second].push(f)
-    //   }
-    //   console.log(first)
-    //   return first
-    // },
-    // merg(){
-    //  const year=this.year1
-    //  const first=year.first_semster
-    //  const second=year.second_semster
-    //   var newyear=[]
-    //   const newyear1=[]
-    //   const newyear2=[]
-    //   var id=0
-    //       var hh={}
-    //       for(var e of first){
-    //        var type='f'
-
-    //         var r=e
-    //         newyear1.push({e})
-    //         newyear1[id]=newyear1[id]||[]
-    //         id++
-    //       }
-    //       for(var ew of second){
-    //        var type='s'
-    //        newyear2[id]=newyear2[id]||[]
-    //        var r=ew
-    //        newyear2.push({ew})
-    //       id++
-    //       }
-
-    //       // var le=first.length+second.length-1
-    //       // console.log(le)
-
-    //       for(var e of first){
-    //         for(var ew of second){
-    //        newyear.push({e,ew})
-    //        newyear=newyear||[]
-
-    //       //  console.log({e,ew})
-
-    //       id++
-
-    //         }
-    //       }
-    //       newyear.filter((item,index)=>{newyear.indexOf(item)===index
-    //       })
-
-
-
-    //       console.log(newyear)
-    //       return newyear
-    // }
+    exams1() {
+      const firstSemester = this.year1.filter(el => el.type === 'f')
+      const secondSemester = this.year1.filter(el => el.type === 's')
+      return [[...secondSemester], [...firstSemester]]
+    }, exams2() {
+      const firstSemester = this.year2.filter(el => el.type === 'f')
+      const secondSemester = this.year2.filter(el => el.type === 's')
+      return [[...secondSemester], [...firstSemester]]
+    }, exams3() {
+      const firstSemester = this.year3.filter(el => el.type === 'f')
+      const secondSemester = this.year3.filter(el => el.type === 's')
+      return [[...secondSemester], [...firstSemester]]
+    },
+    exams4() {
+      const firstSemester = this.year4.filter(el => el.type === 'f')
+      const secondSemester = this.year4.filter(el => el.type === 's')
+      return [[...secondSemester], [...firstSemester]]
+    },
   }
 }
 </script>
